@@ -1,0 +1,6 @@
+{
+    "name": "class",
+    "desc": "基于jquery的类封装及插件扩展",
+    "main": "./index.js",
+    "version": "1.0.0"
+}
