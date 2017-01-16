@@ -226,13 +226,19 @@ return {
 
                 action = options;
                 args = slice.call(arguments, 1);
-                options = {};
+                options = null;
             }else{
                 options = options || {};
             }
 
             this.each(function(){
                 var $this = $(this), instance = $this.data(DATANAME), opts = {};
+
+                //if instance exists and reset options, destroy, reinitialize
+                if(instance && options){
+                    instance.destroy();
+                    instance = null;
+                } 
 
                 if(!instance){
                     opts = $.extend({
