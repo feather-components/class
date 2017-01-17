@@ -2,5 +2,8 @@
     "name": "class",
     "desc": "基于jquery的类封装及插件扩展",
     "main": "./index.js",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "dependencies": {
+        "jquery": "~1.12.0"
+    }
 }
