@@ -7,7 +7,7 @@ if(typeof define == 'function' && define.amd){
         require('jquery')
     );
 }else{
-    window.jQuery.klass = factory(window.jQuery);
+    factory(window.jQuery);
 }
 })(function($){
 var NAMESPACE = 'featherUi', NAMESPACE_EXTENSTION = NAMESPACE + '.';
@@ -82,7 +82,7 @@ var Abstract = {
     }
 };
 
-return {
+return $.klass = {
     NAMESPACE: NAMESPACE,
 
     create: function(prototype){
