@@ -162,7 +162,7 @@ return $.klass = {
 
         if(!prototype.widget){
             prototype.widget = function(){
-                return this.$element_;
+                return $(this.$element_);
             };
         }
 
@@ -186,10 +186,17 @@ return $.klass = {
         klass.prototype.trigger = function(event, data){
             trigger.apply(this, arguments);
 
-            var element;
+            var $element;
 
-            if(element = this.widget()){
-                $(element).trigger(name + ':' + event, data);
+            data = $.makeArray(data).concat(this);
+
+            if($element){
+                $element.trigger(name + ':' + event, data);
+            }
+
+            if(!$element || $element[0] !== document){
+                console.log(this, name + ':' + event);
+                $(document).trigger(name + ':' + event, data);
             }
         };
         
