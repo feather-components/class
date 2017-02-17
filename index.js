@@ -141,6 +141,30 @@ return $.klass = {
         return klass;
     },
 
+    $cache: function(namespace, instance){
+
+    },
+
+    $instance: function(namespace, oid){
+        var prefix = namespace + '.';
+
+        if(oid){
+            return $(document).data(prefix + oid);
+        }
+
+        var instances = [];
+
+        $.each($(document).data(), function(key, data){
+            key.indexOf(prefix) == 0 && instances.push(data);
+        });
+
+        return instances;
+    },
+
+    $destroy: function(namespace, oid){
+        
+    },
+
     /**
      * 插件工厂方法
      * 此方法产生一个类的同时，会向$.fn上扩展一个插件，jquery对象以options.dom传入。
@@ -253,12 +277,17 @@ return $.klass = {
 
                     $this.data(DATANAME, instance = new klass(opts));
 
+                    var dataKey = name + '.' + instance._oid;
+
+                    $(document).data(dataKey, instance);
+
                     instance.$element_ = $this;
                     //listen memory release
                     instance.on('release', function(){
                         $this.removeData(DATANAME);
                         instance.$element_ = null;
                         instance = null;
+                        $(document).removeData(dataKey);
                     });
                 }
 
