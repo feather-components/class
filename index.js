@@ -195,7 +195,6 @@ return $.klass = {
             }
 
             if(!$element || $element[0] !== document){
-                console.log(this, name + ':' + event);
                 $(document).trigger(name + ':' + event, data);
             }
         };
