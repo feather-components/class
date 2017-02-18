@@ -162,7 +162,7 @@ return $.klass = {
 
         if(!prototype.widget){
             prototype.widget = function(){
-                return $(this.$element_);
+                return this.$element_ ? $(this.$element_) : null;
             };
         }
 
@@ -186,7 +186,7 @@ return $.klass = {
         klass.prototype.trigger = function(event, data){
             trigger.apply(this, arguments);
 
-            var $element;
+            var $element = this.widget();
 
             data = $.makeArray(data).concat(this);
 
