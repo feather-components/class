@@ -169,7 +169,7 @@ return $.klass = {
         klass = this.extend(parent, prototype);
 
         var DATANAME = NAMESPACE_EXTENSTION + name, destroy;
-
+        
         //如果自己存在destroy方法，则重写，并在destroy帮助其进行一系列解绑操作，以便内存释放
         if(destroy = klass.prototype.destroy){
             klass.prototype.destroy = function(){
@@ -233,8 +233,6 @@ return $.klass = {
                 action = options;
                 args = slice.call(arguments, 1);
                 options = null;
-            }else{
-                options = options || {};
             }
 
             this.each(function(){
@@ -249,7 +247,7 @@ return $.klass = {
                 if(!instance){
                     opts = $.extend({
                         dom: this
-                    }, options);
+                    }, options || {});
 
                     $this.data(DATANAME, instance = new klass(opts));
 
